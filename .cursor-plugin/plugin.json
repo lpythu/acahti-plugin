@@ -1,0 +1,15 @@
+{
+  "name": "acahti",
+  "displayName": "Acahti",
+  "version": "1.0.0",
+  "description": "Island git, PRs, pipelines, and commit checks.",
+  "author": {
+    "name": "SAIDC"
+  },
+  "homepage": "https://acahti.saidc.ai",
+  "repository": "https://github.com/lpythu/acahti-cursor-plugin",
+  "logo": "assets/logo.svg",
+  "keywords": ["acahti", "git", "mcp", "ci"],
+  "category": "integrations",
+  "mcpServers": "./mcp.json"
+}
