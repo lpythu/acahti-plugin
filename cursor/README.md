@@ -10,7 +10,7 @@ Set **ACAHTI_URL** in Customize → Acahti → Configure (no trailing slash). MC
 |---|---|
 | `rules/git-author.mdc` | Always: before commit, Acahti author only if an Acahti remote exists |
 | `rules/island-git.mdc` | Clone / dual remote / push to the island |
-| `rules/island-ci.mdc` | Protected branches, PRs, post-push checks on the island |
+| `rules/island-ci.mdc` | Protected branches, PRs, post-push checks, git tag `vX.Y.Z` vs image tags without `v` |
 | `rules/skill-source.mdc` | Any Acahti MCP / skill work |
 
 Non-Acahti remotes (GitHub, Codeup, …) are out of scope for author and CI rules.

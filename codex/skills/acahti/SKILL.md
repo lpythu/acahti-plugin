@@ -47,6 +47,28 @@ Applies only when you are about to `git commit` (or amend) in the current repo. 
 
 When the push or PR target is an Acahti remote (host in `whoami.apply_when_remote_host`):
 
+## Git tags vs image tags
+
+Two namespaces. Do not copy one onto the other.
+
+| | Form | Example |
+|---|---|---|
+| **git tag** | `v` + semver | `v1.4.0` |
+| **OCI / helm `image.tag`** | no `v` | office `dev-{sha}`; HK `1.4.0`; `latest` pointer |
+
+YAML: `${CI_COMMIT_TAG#v}` (the pipe expands it; Woodpecker only interpolates `${CI_COMMIT_TAG}`).
+
+Put jobs in `.acahti/pipelines/`. Call official pipes with `pipe: <name>@v1` and `with:`. Do not vendor `.acahti/scripts`, write `uses:`, or call `ACAHTI_RUNNER`. YAML only names secrets (`secrets: [acahti_publish_token]` or `KUBECONFIG: kubeconfig_office`); never put values in git or `with:`.
+
+```text
+✅ git tag v1.4.0
+✅ harbor.example/app:1.4.0
+✅ workloads.app.image.tag=${CI_COMMIT_TAG#v}
+❌ git tag 1.4.0
+❌ harbor.example/app:v1.4.0
+❌ image.tag=${CI_COMMIT_TAG}
+```
+
 ## Branches
 
 Protection is whatever Forgejo has on **that** repo. Call `repo_get` and `branch_list`; do not assume `dev` / `test` / `main` / `release`. Direct-push when `protected` is false. Open a PR when `protected` is true (`pr_create` `base` = `default_branch` unless the user named another). If the remote declines a push, open a PR to the default branch.

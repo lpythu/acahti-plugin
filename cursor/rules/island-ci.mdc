@@ -1,11 +1,33 @@
 ---
-description: Acahti protected branches, PRs, and post-push pipeline checks. Use when pushing to Acahti, opening/merging PRs, or triaging island CI.
+description: Acahti protected branches, PRs, post-push checks, and git vs image tags. Use when pushing to Acahti, tagging, writing pipelines, or triaging island CI.
 alwaysApply: false
 ---
 
 # Island CI and PRs
 
 When the push or PR target is an Acahti remote (host in `whoami.apply_when_remote_host`):
+
+## Git tags vs image tags
+
+Two namespaces. Do not copy one onto the other.
+
+| | Form | Example |
+|---|---|---|
+| **git tag** | `v` + semver | `v1.4.0` |
+| **OCI / helm `image.tag`** | no `v` | office `dev-{sha}`; HK `1.4.0`; `latest` pointer |
+
+YAML: `${CI_COMMIT_TAG#v}` (the pipe expands it; Woodpecker only interpolates `${CI_COMMIT_TAG}`).
+
+Put jobs in `.acahti/pipelines/`. Call official pipes with `pipe: <name>@v1` and `with:`. Do not vendor `.acahti/scripts`, write `uses:`, or call `ACAHTI_RUNNER`. YAML only names secrets (`secrets: [acahti_publish_token]` or `KUBECONFIG: kubeconfig_office`); never put values in git or `with:`.
+
+```text
+✅ git tag v1.4.0
+✅ harbor.example/app:1.4.0
+✅ workloads.app.image.tag=${CI_COMMIT_TAG#v}
+❌ git tag 1.4.0
+❌ harbor.example/app:v1.4.0
+❌ image.tag=${CI_COMMIT_TAG}
+```
 
 ## Branches
 
