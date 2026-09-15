@@ -9,8 +9,7 @@ When the push or PR target is an Acahti remote (host in `whoami.apply_when_remot
 
 ## Branches
 
-- Do not push `main` or `release` — open a PR
-- `dev` and `test` are protected; if push is declined, open a PR
+Protection is whatever Forgejo has on **that** repo. Call `repo_get` and `branch_list`; do not assume `dev` / `test` / `main` / `release`. Direct-push when `protected` is false. Open a PR when `protected` is true (`pr_create` `base` = `default_branch` unless the user named another). If the remote declines a push, open a PR to the default branch.
 - Official release trigger is `git push`, a tag, or opening a PR — not `pipeline_trigger` as a substitute
 
 ## After push to the island

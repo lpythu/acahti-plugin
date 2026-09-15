@@ -27,18 +27,21 @@ Applies only when you are about to `git commit` (or amend) in the current repo. 
 
 1. `git remote -v`
 2. Call MCP `whoami`
-3. If **any** remote URL host is in `whoami.apply_when_remote_host`, run every command in `whoami.setup_local` (`git config --local` only)
-4. If **no** remote is an Acahti host, do **not** change `user.name` / `user.email` — keep the laptop identity
+3. Gate **only** on remote URL host — never on directory or repo name (GitHub `lpythu/acahti` / `lpythu/acahti-plugin` are not island)
+4. If **any** remote URL host is in `whoami.apply_when_remote_host`, run every command in `whoami.setup_local` (`git config --local` only)
+5. If **no** remote is an Acahti host, do **not** change `user.name` / `user.email` — keep the laptop identity. If local author was wrongly set to `*@noreply.<acahti-domain>`, unset those local keys
 
 ```text
 ✅ Acahti remote present → local author = whoami.git_name / whoami.git_email
 ✅ Only github.com / codeup / other → leave author alone
+✅ GitHub product repos acahti / acahti-plugin → leave author alone
+❌ Infer island from folder name "acahti"
 ❌ git config --global
 ❌ Ask the user for name or email
 ❌ Invent an email; use whoami.git_email ({login}@noreply.… from whoami)
 ```
 
-`git_name` is the admin-set commit author (default `login`). Do not substitute the laptop display name when step 3 applies.
+`git_name` is the admin-set commit author (default `login`). Do not substitute the laptop display name when step 4 applies.
 
 ## Island CI and PRs
 
@@ -46,8 +49,7 @@ When the push or PR target is an Acahti remote (host in `whoami.apply_when_remot
 
 ## Branches
 
-- Do not push `main` or `release` — open a PR
-- `dev` and `test` are protected; if push is declined, open a PR
+Protection is whatever Forgejo has on **that** repo. Call `repo_get` and `branch_list`; do not assume `dev` / `test` / `main` / `release`. Direct-push when `protected` is false. Open a PR when `protected` is true (`pr_create` `base` = `default_branch` unless the user named another). If the remote declines a push, open a PR to the default branch.
 - Official release trigger is `git push`, a tag, or opening a PR — not `pipeline_trigger` as a substitute
 
 ## After push to the island
@@ -69,7 +71,7 @@ Follow `whoami.skill_url` for full detail. This rule covers remotes only.
 
 - Island git = HTTPS host in `whoami.apply_when_remote_host` 
 - Not island: `ssh://`, `:2222`, bare LAN IPs, Codeup, GitHub
-- The `acahti/` **product** repo on GitHub is not island git — leave that remote on GitHub
+- The `acahti/` and `acahti-plugin/` **product** repos on GitHub are not island git — leave those remotes on GitHub; do not run `setup_local` there
 
 ## Clone and remote name
 

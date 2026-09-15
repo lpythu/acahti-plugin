@@ -11,7 +11,7 @@ Follow `whoami.skill_url` for full detail. This rule covers remotes only.
 
 - Island git = HTTPS host in `whoami.apply_when_remote_host` (e.g. `acahti.saidc.ai`)
 - Not island: `ssh://`, `:2222`, bare LAN IPs, Codeup, GitHub
-- The `acahti/` **product** repo on GitHub is not island git — leave that remote on GitHub
+- The `acahti/` and `acahti-plugin/` **product** repos on GitHub are not island git — leave those remotes on GitHub; do not run `setup_local` there
 
 ## Clone and remote name
 

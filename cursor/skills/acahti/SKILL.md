@@ -9,4 +9,4 @@ Discover MCP tools this session. Call `whoami`, then GET `whoami.skill_url` and 
 
 MCP is this plugin. Do not add `acahti` to `~/.cursor/mcp.json`.
 
-Before any commit: if any remote host is in `whoami.apply_when_remote_host`, run `setup_local`; otherwise leave the laptop git author alone. See plugin rule `git-author`.
+Before any commit: gate only on remote URL host (never directory/repo name). If any remote host is in `whoami.apply_when_remote_host`, run `setup_local`; otherwise leave the laptop git author alone — including GitHub product repos `acahti` / `acahti-plugin`. See plugin rule `git-author`.
