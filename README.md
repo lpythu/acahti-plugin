@@ -1,22 +1,42 @@
-# Acahti
+# Acahti plugin
 
-Cursor plugin for a self-hosted [Acahti](https://github.com/lpythu/acahti) instance: git, PRs, pipelines, and commit checks.
+One repository, two installable packages for [Acahti](https://github.com/lpythu/acahti):
 
-Set **ACAHTI_URL** in Customize → Acahti → Configure (no trailing slash). MCP is `${ACAHTI_URL}/mcp` (OAuth). Then `whoami` and follow `whoami.skill_url`.
+| Package | Host | Path |
+|---|---|---|
+| Cursor | Cursor IDE | [`cursor/`](cursor/) |
+| Codex | OpenAI Codex | [`codex/`](codex/) |
 
-## Rules
+Shared product behavior still comes from the connected instance (`whoami` → `whoami.skill_url`). These packages only wire MCP and host-specific guidance.
 
-| Rule | When |
-|---|---|
-| `rules/git-author.mdc` | Always: before commit, Acahti author only if an Acahti remote exists |
-| `rules/island-git.mdc` | Clone / dual remote / push to the island |
-| `rules/island-ci.mdc` | Protected branches, PRs, post-push checks on the island |
-| `rules/skill-source.mdc` | Any Acahti MCP / skill work |
+## Cursor
 
-Non-Acahti remotes (GitHub, Codeup, …) are out of scope for author and CI rules.
+1. Install from this marketplace, or copy locally:
 
 ```text
-cp -R . ~/.cursor/plugins/local/acahti
+cp -R cursor ~/.cursor/plugins/local/acahti
 ```
 
-Reload the Cursor window. Do not also add `acahti` to `~/.cursor/mcp.json`.
+2. Customize → Acahti → Configure: set **ACAHTI_URL** (no trailing slash).
+3. Reload Cursor. Do not also add `acahti` to `~/.cursor/mcp.json`.
+
+Details: [cursor/README.md](cursor/README.md).
+
+## Codex
+
+1. Install the Codex package from [`codex/`](codex/).
+2. Ask Codex to configure your instance URL, then complete OAuth.
+3. MCP lives in Codex settings (`codex mcp add …`), not in this plugin.
+
+Details: [codex/README.md](codex/README.md).
+
+## Layout
+
+```text
+.cursor-plugin/marketplace.json   # Cursor marketplace → cursor/
+.agents/plugins/marketplace.json  # Codex marketplace → codex/
+cursor/                           # Cursor plugin root
+codex/                            # Codex plugin root
+```
+
+Keep island policy aligned: Cursor `cursor/rules/*.mdc` and the matching sections in `codex/skills/acahti/SKILL.md`.

@@ -1,0 +1,17 @@
+{
+  "name": "acahti",
+  "owner": {
+    "name": "SAIDC"
+  },
+  "metadata": {
+    "description": "Acahti plugins for Cursor and related agent hosts.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "acahti",
+      "source": "cursor",
+      "description": "Island git, PRs, pipelines, commit author gates, and checks."
+    }
+  ]
+}

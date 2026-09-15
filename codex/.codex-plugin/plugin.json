@@ -1,0 +1,34 @@
+{
+  "name": "acahti",
+  "version": "1.3.0",
+  "description": "Acahti git, pull requests, pipelines, and CI for your chosen Acahti instance.",
+  "author": {
+    "name": "SAIDC"
+  },
+  "homepage": "https://github.com/lpythu/acahti",
+  "repository": "https://github.com/lpythu/acahti-plugin",
+  "keywords": [
+    "acahti",
+    "git",
+    "mcp",
+    "ci"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Acahti",
+    "shortDescription": "Acahti git, PRs, pipelines, and commit checks.",
+    "longDescription": "Use any Acahti instance through a separately configured Codex MCP connection. On first use, ask Codex to configure your instance URL and sign in with your own OAuth account. Change hosts without republishing this plugin.",
+    "developerName": "SAIDC",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "检查我的 Acahti 身份和待处理事项",
+      "查看当前仓库的 PR 和流水线状态",
+      "按照 Acahti 规范提交代码并检查 CI"
+    ]
+  }
+}

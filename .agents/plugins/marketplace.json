@@ -1,0 +1,20 @@
+{
+  "name": "acahti",
+  "interface": {
+    "displayName": "Acahti"
+  },
+  "plugins": [
+    {
+      "name": "acahti",
+      "source": {
+        "source": "local",
+        "path": "./codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

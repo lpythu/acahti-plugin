@@ -1,13 +1,13 @@
 {
   "name": "acahti",
   "displayName": "Acahti",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Island git, PRs, pipelines, commit author gates, and checks.",
   "author": {
     "name": "SAIDC"
   },
   "homepage": "https://github.com/lpythu/acahti",
-  "repository": "https://github.com/lpythu/acahti-cursor-plugin",
+  "repository": "https://github.com/lpythu/acahti-plugin",
   "logo": "assets/logo.svg",
   "keywords": ["acahti", "git", "mcp", "ci"],
   "category": "integrations",
