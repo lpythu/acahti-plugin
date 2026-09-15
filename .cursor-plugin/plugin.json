@@ -1,15 +1,26 @@
 {
   "name": "acahti",
   "displayName": "Acahti",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Island git, PRs, pipelines, and commit checks.",
   "author": {
     "name": "SAIDC"
   },
-  "homepage": "https://acahti.saidc.ai",
+  "homepage": "https://github.com/lpythu/acahti",
   "repository": "https://github.com/lpythu/acahti-cursor-plugin",
   "logo": "assets/logo.svg",
   "keywords": ["acahti", "git", "mcp", "ci"],
   "category": "integrations",
-  "mcpServers": "./mcp.json"
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "ACAHTI_URL": {
+        "type": "string",
+        "title": "Acahti instance URL",
+        "description": "Root URL of your Acahti instance, no trailing slash (example: https://acahti.example.com)."
+      }
+    },
+    "required": ["ACAHTI_URL"]
+  }
 }

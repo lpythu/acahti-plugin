@@ -1,8 +1,8 @@
 # Acahti
 
-Cursor plugin for the [Acahti](https://acahti.saidc.ai) island: git, PRs, pipelines, and commit checks.
+Cursor plugin for a self-hosted [Acahti](https://github.com/lpythu/acahti) instance: git, PRs, pipelines, and commit checks.
 
-MCP is `https://acahti.saidc.ai/mcp` (OAuth). Logo is `assets/logo.svg`.
+Set **ACAHTI_URL** in Customize → Acahti → Configure (no trailing slash). MCP is `${ACAHTI_URL}/mcp` (OAuth). Then `whoami` and follow `whoami.skill_url`.
 
 ```text
 cp -R . ~/.cursor/plugins/local/acahti

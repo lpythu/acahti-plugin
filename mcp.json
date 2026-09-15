@@ -2,7 +2,7 @@
   "mcpServers": {
     "acahti": {
       "type": "http",
-      "url": "https://acahti.saidc.ai/mcp"
+      "url": "${ACAHTI_URL}/mcp"
     }
   }
 }
