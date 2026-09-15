@@ -1,0 +1,13 @@
+---
+description: Load live Acahti skill from whoami.skill_url; MCP is this plugin. Use when doing any Acahti git, PR, pipeline, package, or whoami work.
+alwaysApply: false
+---
+
+# Live skill and MCP
+
+1. Discover MCP tools this session (do not trust a cached tool list)
+2. Call `whoami`, then GET `whoami.skill_url` and follow that document
+3. MCP is this plugin — do not add a duplicate `acahti` server to `~/.cursor/mcp.json`
+4. Do not `git config --global` for Acahti identity
+
+If OAuth is required, complete it in the client. Do not paste Bearer tokens into chat or config files.

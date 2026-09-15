@@ -1,0 +1,25 @@
+---
+description: Acahti protected branches, PRs, and post-push pipeline checks. Use when pushing to Acahti, opening/merging PRs, or triaging island CI.
+alwaysApply: false
+---
+
+# Island CI and PRs
+
+When the push or PR target is an Acahti remote (host in `whoami.apply_when_remote_host`):
+
+## Branches
+
+- Do not push `main` or `release` — open a PR
+- `dev` and `test` are protected; if push is declined, open a PR
+- Official release trigger is `git push`, a tag, or opening a PR — not `pipeline_trigger` as a substitute
+
+## After push to the island
+
+1. `git rev-parse HEAD`
+2. `checks_wait` with `{owner, name, sha}` — follow `whoami.skill_url` for poll vs snapshot
+3. Failed: `pipeline_list` → `pipeline_get` → `pipeline_log` (omit `step` unless needed)
+4. Fix and push, or `pipeline_rerun`; `pipeline_cancel` only for a stuck run
+5. Green → `pr_merge`; `blocked` → `deploy_approve`
+6. Triage: `inbox`
+
+When the user only pushes GitHub/Codeup/`origin` and there is no island push in this turn, do not run island CI tools.

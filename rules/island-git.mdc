@@ -1,0 +1,31 @@
+---
+description: Acahti island git remotes, HTTPS clone/push, dual-remote with Codeup/GitHub. Use when cloning, adding remotes, fetching, or pushing to Acahti.
+alwaysApply: false
+---
+
+# Island git remotes
+
+Follow `whoami.skill_url` for full detail. This rule covers remotes only.
+
+## Scope
+
+- Island git = HTTPS host in `whoami.apply_when_remote_host` (e.g. `acahti.saidc.ai`)
+- Not island: `ssh://`, `:2222`, bare LAN IPs, Codeup, GitHub
+- The `acahti/` **product** repo on GitHub is not island git — leave that remote on GitHub
+
+## Clone and remote name
+
+- Clone only `saidc/<repo>` via `whoami.clone_url_template`
+- Team names (Platform, ModelCamp, …) are access only — do not clone `modelcamp/<repo>`
+- Prefer remote name `acahti` for the island URL
+- If Codeup/GitHub is already `origin`, keep it; fetch/push the island on `acahti`
+- Do not `git fetch --all` just to sync the island
+
+```text
+✅ git remote add acahti https://…/saidc/<repo>.git
+✅ git push acahti HEAD:dev
+❌ Replace origin with Acahti when another host is the product remote
+❌ Paste Bearer tokens or read secrets/ for git auth — use MCP OAuth + credential helper
+```
+
+On 401, tell the user to finish MCP OAuth for this plugin. Do not ask them to paste a token.

@@ -1,0 +1,23 @@
+---
+description: Before any git commit, set Acahti author only when an Acahti remote exists; leave other remotes alone.
+alwaysApply: true
+---
+
+# Acahti git author
+
+Applies only when you are about to `git commit` (or amend) in the current repo. Otherwise ignore.
+
+1. `git remote -v`
+2. Call MCP `whoami`
+3. If **any** remote URL host is in `whoami.apply_when_remote_host`, run every command in `whoami.setup_local` (`git config --local` only)
+4. If **no** remote is an Acahti host, do **not** change `user.name` / `user.email` — keep the laptop identity
+
+```text
+✅ Acahti remote present → local author = whoami.git_name / whoami.git_email
+✅ Only github.com / codeup / other → leave author alone
+❌ git config --global
+❌ Ask the user for name or email
+❌ Invent an email; use whoami.git_email ({login}@noreply.… from whoami)
+```
+
+`git_name` is the admin-set commit author (default `login`). Do not substitute the laptop display name when step 3 applies.
