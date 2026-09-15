@@ -1,8 +1,8 @@
 {
   "name": "acahti",
   "displayName": "Acahti",
-  "version": "1.3.0",
-  "description": "Island git, PRs, pipelines, commit author gates, and checks.",
+  "version": "1.4.0",
+  "description": "Island git, PRs, pipelines, secrets, commit author gates, and checks.",
   "author": {
     "name": "SAIDC"
   },

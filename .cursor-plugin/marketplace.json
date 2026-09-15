@@ -11,7 +11,7 @@
     {
       "name": "acahti",
       "source": "cursor",
-      "description": "Island git, PRs, pipelines, commit author gates, and checks."
+      "description": "Island git, PRs, pipelines, secrets, commit author gates, and checks."
     }
   ]
 }
