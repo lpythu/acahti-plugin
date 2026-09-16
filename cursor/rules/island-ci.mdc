@@ -16,9 +16,9 @@ Two namespaces. Do not copy one onto the other.
 | **git tag** | `v` + semver | `v1.4.0` |
 | **OCI / helm `image.tag`** | no `v` | office `dev-{sha}`; HK `1.4.0`; `latest` pointer |
 
-YAML: `${CI_COMMIT_TAG#v}` (the pipe expands it; Woodpecker only interpolates `${CI_COMMIT_TAG}`).
+YAML: `${CI_COMMIT_TAG#v}` (the pipe expands it; the runner interpolates `${CI_COMMIT_TAG}`). In `commands:`, write `$IMAGE` not `${IMAGE}`.
 
-Put jobs in `.acahti/pipelines/`. Call official pipes with `pipe: <name>@v1` and `with:`. Do not vendor `.acahti/scripts`, write `uses:`, or call `ACAHTI_RUNNER`. YAML only names secrets (`secrets: [acahti_publish_token]` or `KUBECONFIG: kubeconfig_office`); never put values in git or `with:`.
+Put jobs in `.acahti/pipelines/`. Call official pipes with `pipe: <name>@v1` and `with:`. Do not vendor `.acahti/scripts`, write `uses:`, or call `ACAHTI_RUNNER`. YAML only names island-external secrets (`KUBECONFIG: kubeconfig_office`); never put values in git or `with:`. Acahti packages use the triggering user's identity.
 
 ```text
 ✅ git tag v1.4.0
@@ -31,7 +31,7 @@ Put jobs in `.acahti/pipelines/`. Call official pipes with `pipe: <name>@v1` and
 
 ## Branches
 
-Protection is whatever Forgejo has on **that** repo. Call `repo_get` and `branch_list`; do not assume `dev` / `test` / `main` / `release`. Direct-push when `protected` is false. Open a PR when `protected` is true (`pr_create` `base` = `default_branch` unless the user named another). If the remote declines a push, open a PR to the default branch.
+Protection is per repository. Call `repo_get` and `branch_list`; do not assume `dev` / `test` / `main` / `release`. Direct-push when `protected` is false. Open a PR when `protected` is true (`pr_create` `base` = `default_branch` unless the user named another). If the remote declines a push, open a PR to the default branch.
 - Official release trigger is `git push`, a tag, or opening a PR — not `pipeline_trigger` as a substitute
 
 ## After push to the island
