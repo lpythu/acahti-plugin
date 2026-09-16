@@ -13,8 +13,10 @@ Missing tools: inspect connection status first. Authenticate for missing/expired
 
 ## Git author
 
-Before commit in an Acahti repo, follow the skill: `whoami` then `setup_local`. Unrelated remotes keep their identity. Optional `hooks/hooks.json` only reminds the agent; trust it via `/hooks` if you want that.
+For commits targeting Acahti, follow the skill: fresh MCP `whoami`, `setup_local`, then verify author and committer. This includes merge/pull-generated commits; inspect outgoing commits before pushing. Preserve original authorship when replaying or amending existing commits. Other destinations keep their identity. Optional `hooks/hooks.json` only reminds the agent; trust it via `/hooks` if you want that. It does not enforce a Git-level block.
 
 ## Releases
 
-Use `scripts/package_workspace.py` from the repository root to generate an instance-specific workspace ZIP from this source. Do not reuse an old ZIP after updating skills. The generic plugin remains instance-independent.
+For SAIDC, merge reviewed changes into `main`. The `workspace-release` GitHub Actions workflow tests this source, bundles `workspaces/saidc.json`, and publishes the generated `workspace-saidc` branch. The workspace marketplace tracks that branch through daily sync or **Sync now**. Do not edit the generated branch or delete the workspace plugin to update it.
+
+Use `scripts/package_workspace.py` for standalone ZIP distributions. The generic plugin remains instance-independent. Workspace sync distributes configuration, not personal OAuth credentials; verify the new version in a new task. Changed hooks may require renewed trust in `/hooks`.

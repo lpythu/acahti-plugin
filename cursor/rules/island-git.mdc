@@ -9,20 +9,19 @@ Follow `whoami.skill_url` for full detail. This rule covers remotes only.
 
 ## Scope
 
-- Island git = HTTPS host in `whoami.apply_when_remote_host` (e.g. `acahti.saidc.ai`)
+- Island git = HTTPS host in `whoami.apply_when_remote_host`
 - Not island: `ssh://`, `:2222`, bare LAN IPs, Codeup, GitHub
-- The `acahti/` and `acahti-plugin/` **product** repos on GitHub are not island git — leave those remotes on GitHub; do not run `setup_local` there
 
 ## Clone and remote name
 
-- Clone only `saidc/<repo>` via `whoami.clone_url_template`
-- Team names (Platform, ModelCamp, …) are access only — do not clone `modelcamp/<repo>`
+- Clone via `whoami.clone_url_template` (owner is `whoami.org`, not a team name)
+- Team names are access only — do not clone `team/<repo>`
 - Prefer remote name `acahti` for the island URL
 - If Codeup/GitHub is already `origin`, keep it; fetch/push the island on `acahti`
 - Do not `git fetch --all` just to sync the island
 
 ```text
-✅ git remote add acahti https://…/saidc/<repo>.git
+✅ git remote add acahti <whoami.clone_url_template>
 ✅ git push acahti HEAD:dev
 ❌ Replace origin with Acahti when another host is the product remote
 ❌ Paste Bearer tokens or read secrets/ for git auth — use MCP OAuth + credential helper

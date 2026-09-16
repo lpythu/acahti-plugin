@@ -1,22 +1,16 @@
 ---
-description: Before any git commit, set Acahti author only when an Acahti remote exists; leave other remotes alone.
+description: Verify author for commits and pushes targeting Acahti only; leave other remote targets alone.
 alwaysApply: true
 ---
 
 # Acahti git author
 
-Applies only when you are about to `git commit` (or amend) in the current repo. Otherwise ignore.
+Apply this policy only to commits intended for Acahti and pushes to Acahti. A repository merely having an Acahti remote does not make its other remotes subject to this policy.
 
-1. `git remote -v`
-2. Call MCP `whoami`
-3. Gate **only** on remote URL host — never on directory or repo name
-4. If **any** remote URL host is in `whoami.apply_when_remote_host`, run `whoami.setup_local` (`git config --local` only). That sets git author to `git_name` / `git_email`.
-5. If **no** remote is an Acahti host, leave `user.name` / `user.email` alone.
+1. Resolve the actual repository and intended push destination from the user's request, explicit push remote/URL, or Git's configured push destination (including push URLs). `git commit` itself has no remote; if multiple destinations are plausible, clarify the intended destination before changing identity. Do not infer it from the directory name, remote name, or whichever remote appears first.
+2. For an Acahti destination, obtain a fresh result from the matching MCP `whoami` before each commit-producing operation and compare the destination HTTPS host with `apply_when_remote_host`. Use `git_name` for Author and `git_email` for email directly; `login` identifies the account and is not a replacement for `git_name`. Do not invent or remap names.
+3. Before creating a commit for that destination, run `setup_local` in the actual repository using local Git config only. If MCP identity cannot be verified, stop before creating the commit and diagnose the connection. Then verify `git var GIT_AUTHOR_IDENT` and `git var GIT_COMMITTER_IDENT`. This includes merge/pull operations that create merge commits, amend, rebase, cherry-pick, revert and their continuation commands. Account for `git -c`, `--author` and `GIT_AUTHOR_*` / `GIT_COMMITTER_*` overrides.
+4. After creating commits, inspect their actual author and committer. For new original commits (including merge commits and reverts), both must match the verified identity. For amend/rebase/cherry-pick, preserve the expected original author and verify the new committer instead. Before pushing to Acahti, inspect the outgoing commits and verify the author and committer of commits created in this task. A push does not change existing commit metadata. If verified identity is unavailable or a newly created commit has an unexpected identity, stop and resolve it before pushing. Do not relabel imported commits as the current user.
+5. Preserve existing authorship when amending, rebasing or cherry-picking another contributor's commit; use the current verified identity for the new committer. Reset an existing author only when the user intends that correction. Never rewrite published history automatically.
 
-```text
-✅ Acahti remote → git author = whoami.git_name / whoami.git_email
-✅ github.com / codeup / other → leave author alone
-❌ Infer island from folder or repo name
-❌ git config --global
-❌ Ask the user for name or email
-```
+For GitHub, Codeup or any other non-Acahti target, do not require Acahti OAuth, change identity, block commits, or run island CI. When temporarily applying `setup_local` in a mixed-remote workflow, save and restore the exact prior local identity entries after the Acahti operation so a later non-Acahti commit does not inherit them. Never change global config or delete unrelated identity settings.

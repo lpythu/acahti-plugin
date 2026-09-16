@@ -4,15 +4,15 @@ import json
 import sys
 
 CONTEXT = (
-    "For Acahti work, load the acahti skill and use MCP first. Website login is "
-    "not MCP OAuth. Missing tools require connection diagnostics, not a browser "
-    "or REST fallback. Before committing/amending in an Acahti repository, "
-    "obtain fresh MCP whoami, match the actual repository's remote host against "
-    "apply_when_remote_host, apply setup_local there, and verify effective Git "
-    "author against git_name/git_email. Do not commit to a confirmed Acahti "
-    "target without verified identity. Leave unrelated repositories' identity "
-    "unchanged. Preserve original authorship on amend unless correcting it is "
-    "explicitly intended. This hook is a reminder, not an enforced commit guard."
+    "Use MCP first for Acahti work; website login is not MCP OAuth. "
+    "Apply author policy only to commits and pushes intended for Acahti, not "
+    "every operation in a repository that happens to have an Acahti remote. "
+    "Resolve the actual destination; if ambiguous, clarify before changing identity. "
+    "For that Acahti target, call fresh whoami and use git_name/git_email via "
+    "setup_local. Cover merge/pull-generated commits and check outgoing commits "
+    "before push. Preserve original authorship for imported/replayed commits. "
+    "Leave non-Acahti targets' identity and workflow unchanged. Load the acahti "
+    "skill for details. This is a reminder, not an enforced Git guard."
 )
 
 

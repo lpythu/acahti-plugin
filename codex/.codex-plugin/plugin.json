@@ -1,6 +1,6 @@
 {
   "name": "acahti",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Acahti git, pull requests, pipelines, and CI for your chosen Acahti instance.",
   "author": {
     "name": "SAIDC"
