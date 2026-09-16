@@ -1,26 +1,20 @@
-# Acahti (Codex)
+# Acahti for Codex
 
-Acahti workflows for Codex. Instance URL is configured in Codex MCP settings, not bundled in this plugin.
+Use MCP first for identity, repositories, PRs and CI. The generic package supports any Acahti instance; workspace release archives bundle the chosen endpoint.
 
-## Install and configure
+## First connection
 
-1. Install this package from [`codex/`](.) in [acahti-plugin](https://github.com/lpythu/acahti-plugin).
-2. Start a new task and ask: **Configure Acahti using my instance URL**. Supply your instance base URL when asked.
-3. Codex adds a native HTTP MCP connection at that instance's `/mcp` endpoint. Complete your own OAuth sign-in.
-4. Start a new task and ask Codex to check your Acahti identity.
+1. Install the plugin. For a workspace package, open its MCP connection settings (gear) and complete Authenticate/OAuth with your own account.
+2. For the generic package only, configure your instance through native MCP settings or `codex mcp add <name> --url <endpoint>`, then `codex mcp login <name>` when authentication is required. Reuse existing connections.
+3. Return to a local Codex task; start a new task if tools have not refreshed. Ask: **通过 MCP 检查我的 Acahti 身份和待处理事项**.
+4. Success requires MCP `whoami` for the intended account and a successful `inbox` call. Logging into the website is a separate operation.
 
-For manual setup, use `codex mcp add acahti --url <your-full-mcp-endpoint>` and, if needed, `codex mcp login acahti`. The URL is stored in your Codex MCP settings, outside this plugin. Never put credentials in the URL.
+Missing tools: inspect connection status first. Authenticate for missing/expired authorization; diagnose transport errors without repeated login attempts. Do not silently substitute a browser or REST for MCP. Never paste passwords or tokens into a task.
 
-## Changing or adding instances
+## Git author
 
-Ask Codex to change the named Acahti connection to your new base URL and sign in again. For simultaneous instances, use distinct connection names and tell Codex which one to use. Changing an MCP connection does not change repository git remotes.
+Before commit in an Acahti repo, follow the skill: `whoami` then `setup_local`. Unrelated remotes keep their identity. Optional `hooks/hooks.json` only reminds the agent; trust it via `/hooks` if you want that.
 
-## Migration from 1.2
+## Releases
 
-Version 1.3 removes the bundled, fixed endpoint. Existing users must configure their intended instance as a native Codex MCP connection once. Reuse an existing standalone connection when present. Update the installed plugin and start a new task before testing. Each engineer authenticates separately; the plugin does not share service permissions or credentials.
-
-## Design
-
-Codex's supported compatibility manifest has no Cursor-style `variables` configuration form. This package therefore separates reusable skills from instance-specific MCP configuration instead of shipping an unresolved URL placeholder or an extra proxy process. See the official [Codex MCP documentation](https://developers.openai.com/codex/mcp).
-
-Current workflow details and remote host matching come from the selected instance's `whoami` response. The Cursor package lives in `../cursor/` in the same repository.
+Use `scripts/package_workspace.py` from the repository root to generate an instance-specific workspace ZIP from this source. Do not reuse an old ZIP after updating skills. The generic plugin remains instance-independent.

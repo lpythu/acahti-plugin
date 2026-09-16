@@ -1,6 +1,6 @@
 {
   "name": "acahti",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Acahti git, pull requests, pipelines, and CI for your chosen Acahti instance.",
   "author": {
     "name": "SAIDC"
@@ -17,7 +17,7 @@
   "interface": {
     "displayName": "Acahti",
     "shortDescription": "Acahti git, PRs, pipelines, and commit checks.",
-    "longDescription": "Use any Acahti instance through a separately configured Codex MCP connection. On first use, ask Codex to configure your instance URL and sign in with your own OAuth account. Change hosts without republishing this plugin.",
+    "longDescription": "Use MCP first for Acahti identity, repositories, PRs and CI. Configure your instance in native MCP settings, then complete individual OAuth. Website login is separate from MCP authorization. Optional trusted hooks remind the agent to verify Git author before committing.",
     "developerName": "SAIDC",
     "category": "Productivity",
     "capabilities": [
@@ -26,9 +26,9 @@
     ],
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "检查我的 Acahti 身份和待处理事项",
-      "查看当前仓库的 PR 和流水线状态",
-      "按照 Acahti 规范提交代码并检查 CI"
+      "通过 MCP 检查我的 Acahti 连接、身份和待处理事项；未连接时指导我完成插件 OAuth",
+      "使用 Acahti MCP 查看当前仓库的 PR 和流水线状态",
+      "提交代码前通过 Acahti MCP 核验 Author，设置当前仓库的 Git 身份并检查 CI"
     ]
   }
 }
