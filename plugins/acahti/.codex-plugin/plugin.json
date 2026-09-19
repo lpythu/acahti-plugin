@@ -1,0 +1,35 @@
+{
+  "name": "acahti",
+  "version": "1.6.1+saidc.git56567c575764",
+  "description": "Acahti git, pull requests, pipelines, and CI for your chosen Acahti instance.",
+  "author": {
+    "name": "SAIDC"
+  },
+  "homepage": "https://github.com/lpythu/acahti",
+  "repository": "https://github.com/lpythu/acahti-plugin",
+  "keywords": [
+    "acahti",
+    "git",
+    "mcp",
+    "ci"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Acahti",
+    "shortDescription": "Acahti git, PRs, pipelines, and commit checks.",
+    "longDescription": "SAIDC workspace edition. MCP endpoint is preconfigured; each member must authorize the plugin MCP connection with their own OAuth account. Website login does not authorize MCP. Use MCP first for identity, repositories and CI. Optional trusted hooks provide author reminders.",
+    "developerName": "SAIDC",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "通过 MCP 检查我的 Acahti 连接、身份和待处理事项；未连接时指导我完成插件 OAuth",
+      "使用 Acahti MCP 查看当前仓库的 PR 和流水线状态",
+      "提交代码前通过 Acahti MCP 核验 Author，设置当前仓库的 Git 身份并检查 CI"
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

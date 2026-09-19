@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "56567c57576423179d1180436c626b14b83e3e6b",
+  "pluginVersion": "1.6.1+saidc.git56567c575764",
+  "pluginId": "Plugin_0f60f0e674ac8191a0f67d1936e6d8fb",
+  "filesSHA256": {
+    ".codex-plugin/plugin.json": "1d78b59dd17860df76ff813f6a0a8db71f49b1313b2b6f5f5bd0af54863233b5",
+    ".mcp.json": "52d8739f40e202447b8a040e87c017fe1d79ef6b190e4936eecc480083810c8e",
+    "README.md": "978a57e151ad5fef7eead94d70be5a19173c7cbc210d1d5ab8625b39e8b9e543",
+    "assets/logo.svg": "f32bf1bf47808effc30b911bc81f2468b15a338fd98511a117d2d25ec1f06f94",
+    "hooks/hooks.json": "07d8ce2fce41c772952206b5ac3400b88530880f495c86342d6690ce358887e2",
+    "hooks/remind.py": "625059da064b38dc2a17ec8767e8763b35d373bdb0215f6dc5e8151a6def82be",
+    "release.json": "1a7048c6798547c28558d2f023d2445c2bbf326f566da398f8796ef5e56849b7",
+    "skills/acahti/SKILL.md": "2112182d6a812b00cd534732ce945fdd3875d210a2374ea966905fcb084a56ff"
+  }
+}

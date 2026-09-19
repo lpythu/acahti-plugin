@@ -1,0 +1,22 @@
+{
+  "version": "1.6.1+saidc.git56567c575764",
+  "workspace": "SAIDC",
+  "mcpEndpoint": "https://acahti.s-aidc.com/mcp",
+  "sourceFilesSHA256": {
+    ".codex-plugin/plugin.json": "6f65581cc8ed4b83771dac3af19b74cbff0068ddcc69bc35c11ed6b2d3027d91",
+    "README.md": "e15f67679023d4891e5e3a49cc5937ee59bda09ba54b7ee21a80f80b2ef3f92b",
+    "assets/logo.svg": "f32bf1bf47808effc30b911bc81f2468b15a338fd98511a117d2d25ec1f06f94",
+    "hooks/hooks.json": "07d8ce2fce41c772952206b5ac3400b88530880f495c86342d6690ce358887e2",
+    "hooks/remind.py": "625059da064b38dc2a17ec8767e8763b35d373bdb0215f6dc5e8151a6def82be",
+    "skills/acahti/SKILL.md": "7a3951cdffc884eb4f2afcb8a7b597e67e9b44c81c6a240e253abbfc06e92034"
+  },
+  "packageFilesSHA256": {
+    ".codex-plugin/plugin.json": "1d78b59dd17860df76ff813f6a0a8db71f49b1313b2b6f5f5bd0af54863233b5",
+    ".mcp.json": "52d8739f40e202447b8a040e87c017fe1d79ef6b190e4936eecc480083810c8e",
+    "README.md": "978a57e151ad5fef7eead94d70be5a19173c7cbc210d1d5ab8625b39e8b9e543",
+    "assets/logo.svg": "f32bf1bf47808effc30b911bc81f2468b15a338fd98511a117d2d25ec1f06f94",
+    "hooks/hooks.json": "07d8ce2fce41c772952206b5ac3400b88530880f495c86342d6690ce358887e2",
+    "hooks/remind.py": "625059da064b38dc2a17ec8767e8763b35d373bdb0215f6dc5e8151a6def82be",
+    "skills/acahti/SKILL.md": "2112182d6a812b00cd534732ce945fdd3875d210a2374ea966905fcb084a56ff"
+  }
+}

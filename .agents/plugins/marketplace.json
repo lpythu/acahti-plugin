@@ -1,0 +1,21 @@
+{
+  "name": "acahti-saidc",
+  "interface": {
+    "displayName": "SAIDC Acahti"
+  },
+  "plugins": [
+    {
+      "name": "acahti",
+      "pluginId": "Plugin_0f60f0e674ac8191a0f67d1936e6d8fb",
+      "source": {
+        "source": "local",
+        "path": "./plugins/acahti"
+      },
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    }
+  ]
+}
