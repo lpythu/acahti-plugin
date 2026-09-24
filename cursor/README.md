@@ -8,7 +8,7 @@ Set **ACAHTI_URL** in Customize → Acahti → Configure (no trailing slash). MC
 
 | Rule | When |
 |---|---|
-| `rules/git-author.mdc` | Always: before commit, Acahti author only if an Acahti remote exists |
+| `rules/git-author.mdc` | Commits and pushes targeting Acahti only; verify the actual destination |
 | `rules/island-git.mdc` | Clone / dual remote / push to the island |
 | `rules/island-ci.mdc` | Protected branches, PRs, post-push checks, git tag `vX.Y.Z` vs image tags without `v` |
 | `rules/skill-source.mdc` | Any Acahti MCP / skill work |
